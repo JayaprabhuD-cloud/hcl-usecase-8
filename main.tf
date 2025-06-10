@@ -15,6 +15,6 @@ module "ecr" {
 
 module "security_groups" {
   source = "./modules/security_groups"
-  repo_name_1 = var.repo_name_1
-  repo_name_2 = var.var.repo_name_2
+  alb_sg_name = var.alb_sg_name
+  app_sg_name = var.app_sg_name
 }

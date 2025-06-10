@@ -31,3 +31,13 @@ variable "repo_name_2" {
   description = "Variable created for patient ecr repo"
   type = string
 }
+
+variable "alb_sg_name" {
+  description = "sg for alb"
+  type = string
+}
+
+variable "app_sg_name" {
+  description = "sg for application containers"
+  type = string
+}
