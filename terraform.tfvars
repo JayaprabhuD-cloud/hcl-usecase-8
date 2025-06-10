@@ -9,3 +9,5 @@ alb_sg_name              = "usecase8_alb_sg"
 app_sg_name              = "usecase8_app_sg"
 tg_name_patient          = "patient_tg"
 tg_name_appoinment       = "appoinment_tg"
+alb_name                 = "usecase8_alb"
+
