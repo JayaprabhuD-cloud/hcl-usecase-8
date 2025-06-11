@@ -39,24 +39,23 @@ module "iam" {
 }
 
 module "ecs" {
-  source = "./modules/ecs"
-  cluster_name = var.cluster_name
-  vpc_id                   = modules.vpc.vpc_id
-  private_subnets          = [modules.vpc.private_subnet_1, module.vpc.private_subnet_2]
-  app_sg_name   = modules.security_groups.app_sg
-  task_execution_role_arn  = modules.iam.ecs_task_execution_role_arn
-  task_role_arn           = modules.iam.ecs_task_role_arn
-  ecr_patient_repo_url    = modules.ecr.patient_repo_url
-  ecr_appointment_repo_url = modules.ecr.appointment_repo_url
-  target_group_arns       = modules.alb.target_group_arns
-  container_cpu           = var.container_cpu
-  container_memory        = var.container_memory
-  app_port               = var.app_port
-  desired_capacity       = var.desired_capacity
+  source                    = "./modules/ecs"
+  cluster_name              = var.cluster_name
+  private_subnets           = [module.vpc.private_subnet_1, module.vpc.private_subnet_2]
+  app_sg_name               = module.security_groups.app_sg
+  task_execution_role_arn   = module.iam.ecs_task_execution_role_arn
+  task_role_arn             = module.iam.ecs_task_role_arn
+  ecr_patient_repo_url      = module.ecr.patient_repo_url
+  ecr_appointment_repo_url  = module.ecr.appointment_repo_url
+  target_group_arns         = module.alb.target_group_arns
+  container_cpu             = var.container_cpu
+  container_memory          = var.container_memory
+  app_port                  = var.app_port
+  desired_capacity          = var.desired_capacity
   appoinment_log_group_name = var.appoinment_log_group_name
-  appointment_service_task = var.appointment_service_task
-  patient_service_name = var.patient_service_name
-  appointment_service_name = var.appointment_service_name
+  appointment_service_task  = var.appointment_service_task
+  patient_service_name      = var.patient_service_name
+  appointment_service_name  = var.appointment_service_name
   patient_service_task_name = var.patient_service_task_name
-  patient_log_group_name = var.patient_log_group_name
+  patient_log_group_name    = var.patient_log_group_name
 }

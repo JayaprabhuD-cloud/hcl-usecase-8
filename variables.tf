@@ -98,6 +98,7 @@ variable "desired_capacity" {
 
 variable "cluster_name" {
   type = string
+  default = "usecase8_cluster"
 }
 
 variable "appoinment_log_group_name" {
