@@ -10,4 +10,8 @@ app_sg_name              = "usecase8_app_sg"
 tg_name_patient          = "patient-tg"
 tg_name_appoinment       = "appoinment-tg"
 alb_name                 = "usecase8-alb"
+ecs-task-execution-role-name = "ecs-task-execution-role"
+ecs_task_execution_role_policy_name = "ecs-task-execution-role-policy"
+ecs_task_role = "ecs_task_role"
+ecs_task_role_policy = "ecs_task_role_policy"
 

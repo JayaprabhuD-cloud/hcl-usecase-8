@@ -29,3 +29,7 @@ module "alb" {
   alb_sg                    = [module.security_groups.alb_sg]
   public_subnets = [module.vpc.public_subnet_1, module.vpc.public_subnet_2]
 }
+
+module "iam" {
+  source = "./modules/iam"
+}

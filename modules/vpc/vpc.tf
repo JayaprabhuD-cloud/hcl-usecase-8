@@ -130,7 +130,7 @@ resource "aws_route_table" "private_rt" {
   }
 
   tags = {
-    Name = "public_route_table"
+    Name = "private_route_table"
   }
 }
 
