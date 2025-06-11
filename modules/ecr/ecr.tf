@@ -1,6 +1,6 @@
 # Creating first repo for patient docker image
 
-resource "aws_ecr_repository" "Patient" {
+resource "aws_ecr_repository" "patient" {
   name                 = var.repo_name_1
   image_tag_mutability = "MUTABLE"
 
@@ -25,3 +25,5 @@ resource "aws_ecr_repository" "appointment" {
     Name = var.repo_name_2
   }
 }
+
+##

@@ -28,7 +28,7 @@ variable "repo_name_1" {
 }
 
 variable "repo_name_2" {
-  description = "Variable created for patient ecr repo"
+  description = "Variable created for appoinment ecr repo"
   type = string
 }
 
