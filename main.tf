@@ -22,6 +22,7 @@ module "security_groups" {
 
 module "alb" {
   source = "./modules/alb"
+  vpc_id = module.vpc.vpc_id
   tg_name_patient           = var.tg_name_patient
   tg_name_appoinment        = var.tg_name_appoinment
   alb_name                  = var.alb_name
