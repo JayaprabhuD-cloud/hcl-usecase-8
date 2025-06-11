@@ -115,10 +115,10 @@ variable "patient_service_name" {
   default = "patient_service_name"
 }
 
-variable "appointment_service_task" {
-  type = string
-  default = "appointment_service_name"
-}
+#variable "appointment_service_task" {
+#  type = string
+#  default = "appointment_service_name"
+#}
 
 variable "patient_service_task_name" {
   type = string

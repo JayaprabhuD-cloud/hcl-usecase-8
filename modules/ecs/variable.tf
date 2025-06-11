@@ -29,19 +29,11 @@ variable "patient_service_name" {
   default = "patient_service_name"
 }
 
-#variable "environment" {}
-variable "appointment_service_task" {
-  type = string
-  default = "appointment_service_name"
-}
-
 #variable "target_group_arns.patient_service" {}
 variable "appointment_service_name" {
   type = string
   default = "appointment_service_name"
 }
-
-variable "patient_service_task_name" {}
 
 variable "target_group_arns" {
   description = "Map of target group ARNs"
