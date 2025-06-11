@@ -42,7 +42,7 @@ module "ecs" {
   source                    = "./modules/ecs"
   cluster_name              = var.cluster_name
   private_subnets           = [module.vpc.private_subnet_1, module.vpc.private_subnet_2]
-  app_sg_name               = module.security_groups.app_sg
+  app_sg_name               = [module.security_groups.app_sg]
   task_execution_role_arn   = module.iam.ecs_task_execution_role_arn
   task_role_arn             = module.iam.ecs_task_role_arn
   ecr_patient_repo_url      = module.ecr.patient_repo_url
