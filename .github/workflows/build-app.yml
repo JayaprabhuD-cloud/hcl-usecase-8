@@ -63,7 +63,7 @@ jobs:
         working-directory: services/patient-service
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: healthcare-app-dev-patient-service
+          ECR_REPOSITORY: patient_repo
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -95,7 +95,7 @@ jobs:
         working-directory: services/appointment-service
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: healthcare-app-dev-appointment-service
+          ECR_REPOSITORY: appointment_repo
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -123,28 +123,28 @@ jobs:
         if: needs.build-patient-service.result == 'success'
         run: |
           aws ecs update-service \
-            --cluster healthcare-app-dev-cluster \
-            --service healthcare-app-dev-patient-service \
+            --cluster usecase8_cluster \
+            --service patient_service_name \
             --force-new-deployment
 
       - name: Update Appointment Service
         if: needs.build-appointment-service.result == 'success'
         run: |
           aws ecs update-service \
-            --cluster healthcare-app-dev-cluster \
-            --service healthcare-app-dev-appointment-service \
+            --cluster usecase8_cluster \
+            --service appointment_service_name \
             --force-new-deployment
 
       - name: Wait for services to stabilize
         run: |
           if [[ "${{ needs.build-patient-service.result }}" == "success" ]]; then
             aws ecs wait services-stable \
-              --cluster healthcare-app-dev-cluster \
-              --services healthcare-app-dev-patient-service
+              --cluster usecase8_cluster \
+              --service patient_service_name \
           fi
           
           if [[ "${{ needs.build-appointment-service.result }}" == "success" ]]; then
             aws ecs wait services-stable \
-              --cluster healthcare-app-dev-cluster \
-              --services healthcare-app-dev-appointment-service
+              --cluster usecase8_cluster \
+              --service patient_service_name \
           fi
