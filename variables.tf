@@ -144,3 +144,7 @@ variable "ecr_appointment_repo_url" {
   description = "URL of the appointment service ECR repository"
   type        = string
 }
+
+variable "vpc_id" {
+  type = string
+}
