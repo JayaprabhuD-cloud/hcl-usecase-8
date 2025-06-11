@@ -53,11 +53,6 @@ variable "private_subnets" {
   type        = list(string)
 }
 
-variable "ecs_security_group_id" {
-  description = "ID of the ECS security group"
-  type        = string
-}
-
 variable "task_execution_role_arn" {
   description = "ARN of the ECS task execution role"
   type        = string
