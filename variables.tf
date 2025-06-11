@@ -136,11 +136,6 @@ variable "appointment_service_name" {
   default = "appointment_service_name"
 }
 
-variable "ecr_patient_repo_url" {
-  description = "URL of the patient service ECR repository"
-  type        = string
-}
-
 variable "vpc_id" {
   type = string
 }
