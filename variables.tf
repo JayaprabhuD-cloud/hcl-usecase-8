@@ -56,8 +56,3 @@ variable "alb_name" {
   description = "Name of the Application Load Balancer"
   type        = string
 }
-
-variable "vpc_id" {
-  description = "refering vpc"
-  type = string
-}
