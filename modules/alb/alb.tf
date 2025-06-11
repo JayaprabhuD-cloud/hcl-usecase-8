@@ -106,7 +106,7 @@ resource "aws_lb_listener_rule" "appoinment" {
 
   condition {
     path_pattern {
-      values = ["/appoinment*"]
+      values = ["/appoinments*"]
     }
   }
   tags = {
