@@ -42,3 +42,22 @@ variable "app_sg_name" {
   type = string
 }
 
+variable "tg_name_patient" {
+  description = "Name of the target group for patient"
+  type        = string
+}
+
+variable "tg_name_appoinment" {
+  description = "Name of the target group for appointment"
+  type        = string
+}
+
+variable "alb_name" {
+  description = "Name of the Application Load Balancer"
+  type        = string
+}
+
+variable "vpc_id" {
+  description = "refering vpc"
+  type = string
+}

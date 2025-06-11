@@ -2,7 +2,7 @@
 resource "aws_security_group" "alb_sg" {
   name        = var.alb_sg_name
   description = "Allow HTTP"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port   = 80
@@ -32,7 +32,7 @@ resource "aws_security_group" "alb_sg" {
 # Creating security group for Application containers
 resource "aws_security_group" "app_sg" {
   name   = var.app_sg_name
-  vpc_id = aws_vpc.main.id
+  vpc_id = var.vpc_id
 
   ingress {
     from_port       = 3000

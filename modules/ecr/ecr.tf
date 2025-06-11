@@ -7,7 +7,7 @@ resource "aws_ecr_repository" "Patient" {
   image_scanning_configuration {
     scan_on_push = true
   }
-  tags {
+  tags = {
     Name = var.repo_name_1
   }
 }
@@ -21,7 +21,7 @@ resource "aws_ecr_repository" "appointment" {
   image_scanning_configuration {
     scan_on_push = true
   }
-  tags {
+  tags = {
     Name = var.repo_name_2
   }
 }

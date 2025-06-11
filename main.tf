@@ -10,13 +10,14 @@ module "vpc" {
 module "ecr" {
   source = "./modules/ecr"
   repo_name_1               = var.repo_name_1
-  repo_name_2               = var.var.repo_name_2
+  repo_name_2               = var.repo_name_2
 }
 
 module "security_groups" {
   source = "./modules/security_groups"
   alb_sg_name               = var.alb_sg_name
   app_sg_name               = var.app_sg_name
+  vpc_id = module.vpc.vpc_id
 }
 
 module "alb" {
