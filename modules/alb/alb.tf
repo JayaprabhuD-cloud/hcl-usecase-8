@@ -1,4 +1,3 @@
-
 # Creating target group for patient application
 
 resource "aws_lb_target_group" "patient_tg" {

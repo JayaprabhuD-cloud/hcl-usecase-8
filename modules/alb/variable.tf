@@ -1,8 +1,8 @@
-
-variable "alb_sg_name" {
-  description = "Name of the ALB security group"
-  type        = string
-}
+#
+#variable "alb_sg_name" {
+#  description = "Name of the ALB security group"
+#  type        = string
+#}
 
 variable "tg_name_patient" {
   description = "Name of the target group for patient"
