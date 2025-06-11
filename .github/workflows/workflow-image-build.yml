@@ -135,16 +135,16 @@ jobs:
             --service appointment_service_name \
             --force-new-deployment
 
-      - name: Wait for services to stabilize
-        run: |
-          if [[ "${{ needs.build-patient-service.result }}" == "success" ]]; then
-            aws ecs wait services-stable \
-              --cluster usecase8_cluster \
-              --service patient_service_name \
-          fi
-          
-          if [[ "${{ needs.build-appointment-service.result }}" == "success" ]]; then
-            aws ecs wait services-stable \
-              --cluster usecase8_cluster \
-              --service patient_service_name \
-          fi
+     # - name: Wait for services to stabilize
+     #   run: |
+     #     if [[ "${{ needs.build-patient-service.result }}" == "success" ]]; then
+     #       aws ecs wait services-stable \
+     #         --cluster usecase8_cluster \
+     #         --service patient_service_name \
+     #     fi
+     #     
+     #     if [[ "${{ needs.build-appointment-service.result }}" == "success" ]]; then
+     #       aws ecs wait services-stable \
+     #         --cluster usecase8_cluster \
+     #         --service patient_service_name \
+     #     fi
