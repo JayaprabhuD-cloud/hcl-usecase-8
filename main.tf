@@ -32,4 +32,8 @@ module "alb" {
 
 module "iam" {
   source = "./modules/iam"
+  ecs-task-execution-role-name = var.ecs-task-execution-role-name
+  ecs_task_execution_role_policy_name = var.ecs_task_execution_role_policy_name
+  ecs_task_role = var.ecs_task_role
+  ecs_task_role_policy = var.ecs_task_role_policy
 }
