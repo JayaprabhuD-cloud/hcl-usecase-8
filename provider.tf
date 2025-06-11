@@ -5,6 +5,12 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+# Configure the AWS Provider
+provider "aws" {
+  region = "ap-south-1"
+}
+
 #  backend "s3" {
 #    bucket = "bayer-terraform-remote-state-bucket"
 #    key    = "usecase-8/terraform.tfstate"
@@ -13,7 +19,3 @@ terraform {
 #  }
 #}
 
-# Configure the AWS Provider
-provider "aws" {
-  region = "ap-south-1"
-}
