@@ -135,7 +135,3 @@ variable "appointment_service_name" {
   type = string
   default = "appointment_service_name"
 }
-
-variable "vpc_id" {
-  type = string
-}
