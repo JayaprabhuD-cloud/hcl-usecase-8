@@ -76,7 +76,7 @@ resource "aws_lb_listener" "http" {
 
 resource "aws_lb_listener_rule" "patient" {
   listener_arn = aws_lb_listener.http.arn
-  priority     = 8
+  priority     = 5
 
   action {
     type             = "forward"
@@ -97,7 +97,7 @@ resource "aws_lb_listener_rule" "patient" {
 
 resource "aws_lb_listener_rule" "appoinment" {
   listener_arn = aws_lb_listener.http.arn
-  priority     = 5
+  priority     = 1
 
   action {
     type             = "forward"
