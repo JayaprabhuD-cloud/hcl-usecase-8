@@ -100,3 +100,37 @@ variable "cluster_name" {
   type = string
 }
 
+variable "appoinment_log_group_name" {
+  type = string
+  default = "appoinment_log_group"
+}
+
+variable "appointment_service_task" {
+  type = string
+  default = "appointment_service_task_definition"
+}
+
+variable "patient_service_name" {
+  type = string
+  default = "patient_service_name"
+}
+
+variable "appointment_service_task" {
+  type = string
+  default = "appointment_service_name"
+}
+
+variable "patient_service_task_name" {
+  type = string
+  default = "patient_service_task_definition"
+}
+
+variable "patient_log_group_name" {
+  type = string
+  default = "patient_log_group"
+}
+
+variable "appointment_service_name" {
+  type = string
+  default = "appointment_service_name"
+}

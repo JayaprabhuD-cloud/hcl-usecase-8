@@ -53,4 +53,10 @@ module "ecs" {
   container_memory        = var.container_memory
   app_port               = var.app_port
   desired_capacity       = var.desired_capacity
+  appoinment_log_group_name = var.appoinment_log_group_name
+  appointment_service_task = var.appointment_service_task
+  patient_service_name = var.patient_service_name
+  appointment_service_name = var.appointment_service_name
+  patient_service_task_name = var.patient_service_task_name
+  patient_log_group_name = var.patient_log_group_name
 }
