@@ -23,7 +23,7 @@ module "alb" {
   source = "./modules/alb"
   tg_name_patient           = var.tg_name_patient
   tg_name_appoinment        = var.tg_name_appoinment
-  alb_name                  = var.var.alb_name
+  alb_name                  = var.alb_name
   alb_sg                    = module.security_groups.alb_sg
-  public_subnets   = [module.vpc.public_subnet_1, module.vpc.public_subnet_2]
+  public_subnets = [module.vpc.public_subnet_1, module.vpc.public_subnet_2]
 }
