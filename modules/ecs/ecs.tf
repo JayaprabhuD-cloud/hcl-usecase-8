@@ -34,7 +34,7 @@ resource "aws_cloudwatch_log_group" "appointment_service" {
 
 # ECS Task Definition for Patient Service
 resource "aws_ecs_task_definition" "patient_service" {
-  family                   = var.patient-service
+  family                   = var.patient-service-task-name
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = var.container_cpu
@@ -74,11 +74,11 @@ resource "aws_ecs_task_definition" "patient_service" {
         }
       }
 
-      environment = [
-        {
-          name  = "NODE_ENV"
+#      environment = [
+#        {
+#          name  = "NODE_ENV"
 #          value = var.environment
-        },
+#        },
         {
           name  = "PORT"
           value = tostring(var.app_port)
@@ -90,8 +90,7 @@ resource "aws_ecs_task_definition" "patient_service" {
   ])
 
   tags = {
-    Name        = var.patient-service
-    Service     = "patient-service"
+    Name        = var.patient-service-task-name
   }
 }
 
@@ -137,11 +136,11 @@ resource "aws_ecs_task_definition" "appointment_service" {
         }
       }
 
-      environment = [
-        {
-          name  = "NODE_ENV"
+#      environment = [
+#        {
+#          name  = "NODE_ENV"
 #          value = var.environment
-        },
+#        },
         {
           name  = "PORT"
           value = tostring(var.app_port)
@@ -156,10 +155,9 @@ resource "aws_ecs_task_definition" "appointment_service" {
     Name        = var.appointment-service-task
   }
 }
---------------------------------------------------
 # ECS Service for Patient Service
 resource "aws_ecs_service" "patient_service" {
-  name            = "${var.project_name}-${var.environment}-patient-service"
+  name            = var.patient-service-name
   cluster         = aws_ecs_cluster.main.id
   task_definition = aws_ecs_task_definition.patient_service.arn
   desired_count   = var.desired_capacity
@@ -180,15 +178,13 @@ resource "aws_ecs_service" "patient_service" {
   depends_on = [var.target_group_arns]
 
   tags = {
-    Name        = "${var.project_name}-${var.environment}-patient-service"
-    Service     = "patient-service"
-    Environment = var.environment
+    Name        = var.patient-service-name
   }
 }
 
 # ECS Service for Appointment Service
 resource "aws_ecs_service" "appointment_service" {
-  name            = "${var.project_name}-${var.environment}-appointment-service"
+  name            = var.appointment-service-name
   cluster         = aws_ecs_cluster.main.id
   task_definition = aws_ecs_task_definition.appointment_service.arn
   desired_count   = var.desired_capacity
@@ -209,11 +205,6 @@ resource "aws_ecs_service" "appointment_service" {
   depends_on = [var.target_group_arns]
 
   tags = {
-    Name        = "${var.project_name}-${var.environment}-appointment-service"
-    Service     = "appointment-service"
-    Environment = var.environment
+    Name        = var.appointment-service-name
   }
 }
-
-# Data source for current AWS region
-data "aws_region" "current" {}
