@@ -101,3 +101,8 @@ variable "desired_capacity" {
   type        = number
   default     = 1
 }
+
+variable "private_subnets" {
+  description = "List of public subnet IDs"
+  type        = list(string)
+}
