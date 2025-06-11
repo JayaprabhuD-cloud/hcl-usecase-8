@@ -28,25 +28,25 @@ resource "aws_cloudwatch_log_group" "appointment_service" {
   retention_in_days = 7
 
   tags = {
-    Name        = var.appoinment_log_group_name
+    Name = var.appoinment_log_group_name
   }
 }
 
 # ECS Task Definition for Patient Service
 resource "aws_ecs_task_definition" "patient_service" {
-  family                   = var.patient-service-task-name
+  family                   = var.patient_service_task_name
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = var.container_cpu
   memory                   = var.container_memory
   execution_role_arn       = var.task_execution_role_arn
-  task_role_arn           = var.task_role_arn
+  task_role_arn            = var.task_role_arn
 
   container_definitions = jsonencode([
     {
       name  = "patient-service"
       image = "${var.ecr_patient_repo_url}:latest"
-      
+
       portMappings = [
         {
           containerPort = var.app_port
@@ -74,11 +74,7 @@ resource "aws_ecs_task_definition" "patient_service" {
         }
       }
 
-#      environment = [
-#        {
-#          name  = "NODE_ENV"
-#          value = var.environment
-#        },
+      environment = [
         {
           name  = "PORT"
           value = tostring(var.app_port)
@@ -90,25 +86,25 @@ resource "aws_ecs_task_definition" "patient_service" {
   ])
 
   tags = {
-    Name        = var.patient-service-task-name
+    Name = var.patient_service_task_name
   }
 }
 
 # ECS Task Definition for Appointment Service
 resource "aws_ecs_task_definition" "appointment_service" {
-  family                   = var.appointment-service-task
+  family                   = var.appointment_service_task
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = var.container_cpu
   memory                   = var.container_memory
   execution_role_arn       = var.task_execution_role_arn
-  task_role_arn           = var.task_role_arn
+  task_role_arn            = var.task_role_arn
 
   container_definitions = jsonencode([
     {
       name  = "appointment-service"
       image = "${var.ecr_appointment_repo_url}:latest"
-      
+
       portMappings = [
         {
           containerPort = var.app_port
@@ -136,11 +132,7 @@ resource "aws_ecs_task_definition" "appointment_service" {
         }
       }
 
-#      environment = [
-#        {
-#          name  = "NODE_ENV"
-#          value = var.environment
-#        },
+      environment = [
         {
           name  = "PORT"
           value = tostring(var.app_port)
@@ -152,12 +144,13 @@ resource "aws_ecs_task_definition" "appointment_service" {
   ])
 
   tags = {
-    Name        = var.appointment-service-task
+    Name = var.appointment_service_task
   }
 }
+
 # ECS Service for Patient Service
 resource "aws_ecs_service" "patient_service" {
-  name            = var.patient-service-name
+  name            = var.patient_service_name
   cluster         = aws_ecs_cluster.main.id
   task_definition = aws_ecs_task_definition.patient_service.arn
   desired_count   = var.desired_capacity
@@ -175,16 +168,16 @@ resource "aws_ecs_service" "patient_service" {
     container_port   = var.app_port
   }
 
-  depends_on = [var.target_group_arns]
+  depends_on = [aws_ecs_task_definition.patient_service]
 
   tags = {
-    Name        = var.patient-service-name
+    Name = var.patient_service_name
   }
 }
 
 # ECS Service for Appointment Service
 resource "aws_ecs_service" "appointment_service" {
-  name            = var.appointment-service-name
+  name            = var.appointment_service_name
   cluster         = aws_ecs_cluster.main.id
   task_definition = aws_ecs_task_definition.appointment_service.arn
   desired_count   = var.desired_capacity
@@ -202,9 +195,9 @@ resource "aws_ecs_service" "appointment_service" {
     container_port   = var.app_port
   }
 
-  depends_on = [var.target_group_arns]
+  depends_on = [aws_ecs_task_definition.appointment_service]
 
   tags = {
-    Name        = var.appointment-service-name
+    Name = var.appointment_service_name
   }
 }
