@@ -101,3 +101,7 @@ variable "desired_capacity" {
   type        = number
   default     = 1
 }
+
+variable "app_sg_name" {
+  type =list(string)
+}

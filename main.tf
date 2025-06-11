@@ -41,14 +41,14 @@ module "iam" {
 module "ecs" {
   source = "./modules/ecs"
   cluster_name = var.cluster_name
-  vpc_id                   = module.vpc.vpc_id
-  private_subnets          = [module.vpc.private_subnet_1, module.vpc.private_subnet_2]
-  ecs_security_group_id    = module.vpc.ecs_security_group_id
-  task_execution_role_arn  = module.iam.ecs_task_execution_role_arn
-  task_role_arn           = module.iam.ecs_task_role_arn
-  ecr_patient_repo_url    = module.ecr.patient_service_repository_url
-  ecr_appointment_repo_url = module.ecr.appointment_service_repository_url
-  target_group_arns       = module.alb.target_group_arns
+  vpc_id                   = modules.vpc.vpc_id
+  private_subnets          = [modules.vpc.private_subnet_1, module.vpc.private_subnet_2]
+  app_sg_name   = modules.security_groups.app_sg
+  task_execution_role_arn  = modules.iam.ecs_task_execution_role_arn
+  task_role_arn           = modules.iam.ecs_task_role_arn
+  ecr_patient_repo_url    = modules.ecr.patient_repo_url
+  ecr_appointment_repo_url = modules.ecr.appointment_repo_url
+  target_group_arns       = modules.alb.target_group_arns
   container_cpu           = var.container_cpu
   container_memory        = var.container_memory
   app_port               = var.app_port

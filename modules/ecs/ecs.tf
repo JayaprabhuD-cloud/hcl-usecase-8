@@ -157,7 +157,7 @@ resource "aws_ecs_service" "patient_service" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    security_groups  = [var.ecs_security_group_id]
+    security_groups  = var.app_sg_name
     subnets          = var.private_subnets
     assign_public_ip = false
   }
