@@ -8,15 +8,16 @@ variable "task_role_arn" {}
 variable "ecr_patient_repo_url" {}
 variable "app_port" {}
 #variable "environment" {}
-variable "appointment-service-task" {}
+variable "appointment_service_task" {}
 variable "ecr_appointment_repo_url" {}
-variable "patient-service-name" {}
+variable "patient_service_name" {}
 variable "desired_capacity" {}
 variable "ecs_security_group_id" {}
 variable "private_subnets" {}
 variable "target_group_arns.patient_service" {}
-variable "appointment-service-name" {}
-variable "patient-service-task-name" {}
+variable "appointment_service_name" {}
+
+variable "patient_service_task_name" {}
 
 variable "target_group_arns" {
   description = "Map of target group ARNs"
