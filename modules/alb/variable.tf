@@ -22,10 +22,15 @@ variable "alb_name" {
 
 variable "alb_sg" {
   description = "Security group ID for the ALB"
-  type        = string
+  type        = list(string)
 }
 
 variable "public_subnets" {
   description = "List of public subnet IDs"
   type        = list(string)
+}
+
+variable "vpc_id" {
+  description = "refering vpc"
+  type = string
 }
