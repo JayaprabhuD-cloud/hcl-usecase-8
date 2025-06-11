@@ -37,3 +37,20 @@ module "iam" {
   ecs_task_role = var.ecs_task_role
   ecs_task_role_policy = var.ecs_task_role_policy
 }
+
+module "ecs" {
+  source = "./modules/ecs"
+  cluster_name = var.cluster_name
+  vpc_id                   = module.vpc.vpc_id
+  private_subnets          = module.vpc.private_subnets
+  ecs_security_group_id    = module.vpc.ecs_security_group_id
+  task_execution_role_arn  = module.iam.ecs_task_execution_role_arn
+  task_role_arn           = module.iam.ecs_task_role_arn
+  ecr_patient_repo_url    = module.ecr.patient_service_repository_url
+  ecr_appointment_repo_url = module.ecr.appointment_service_repository_url
+  target_group_arns       = module.alb.target_group_arns
+  container_cpu           = var.container_cpu
+  container_memory        = var.container_memory
+  app_port               = var.app_port
+  desired_capacity       = var.desired_capacity
+}

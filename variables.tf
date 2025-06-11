@@ -71,3 +71,32 @@ variable "ecs_task_role" {
 variable "ecs_task_role_policy" {
   type = string
 }
+
+variable "container_cpu" {
+  description = "CPU units for containers"
+  type        = number
+  default     = 256
+}
+
+variable "container_memory" {
+  description = "Memory for containers"
+  type        = number
+  default     = 512
+}
+
+variable "app_port" {
+  description = "Application port"
+  type        = number
+  default     = 3000
+}
+
+variable "desired_capacity" {
+  description = "Desired number of instances"
+  type        = number
+  default     = 1
+}
+
+variable "cluster_name" {
+  type = string
+}
+
